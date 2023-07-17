@@ -8,26 +8,26 @@
                 <img src="../assets/logosmall.svg" alt="">
             </router-link>
             <div class="nav">
-                <div class="nav__item">
-                    <div class="like">
-                        <img src="../assets/searchwhite.svg" alt="">
-                    </div>
-                    <div class="txt">
-                        <router-link :to="{ name: 'home' }">
+                <router-link :to="{ name: 'home' }">
+                    <div class="nav__item">
+                        <div class="like">
+                            <img src="../assets/searchwhite.svg" alt="">
+                        </div>
+                        <div class="txt">
                             Поиск
-                        </router-link>
+                        </div>
                     </div>
-                </div>
-                <div class="nav__item">
-                    <div class="like">
-                        <img src="../assets/like.svg" alt="">
-                    </div>
-                    <div class="txt">
-                        <router-link :to="{ name: 'favorite' }">
+                </router-link>
+                <router-link :to="{ name: 'favorite' }">
+                    <div class="nav__item">
+                        <div class="like">
+                            <img src="../assets/like.svg" alt="">
+                        </div>
+                        <div class="txt">
                             Избранное
-                        </router-link>
+                        </div>
                     </div>
-                </div>
+                </router-link>
             </div>
         </div>
     </header>
@@ -67,5 +67,11 @@
 .txt {
     color: #ffffff;
     font-size: 18px;
+}
+
+@media (max-width: 508px) {
+    .txt {
+        display: none;
+    }
 }
 </style>

@@ -39,4 +39,19 @@ export default {
     height: 440px;
     width: 473px;
 }
+
+@media (max-width: 1488px) {
+    .result {
+        grid-template-columns: 1fr;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 508px) {
+    .result img {
+        height: 331px;
+        width: 334px;
+    }
+}
 </style>

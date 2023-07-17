@@ -6,13 +6,13 @@ import HeaderAlternative from '../components/HeaderAlternative.vue'
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
-  computed: {
-    ...mapState(['photos']),
-    ...mapGetters(['isImageLiked', 'allImageLinks'])
-  },
-  methods: {
-    ...mapActions(['toggleImageLike'])
-  }
+    computed: {
+        ...mapState(['photos']),
+        ...mapGetters(['isImageLiked', 'allImageLinks'])
+    },
+    methods: {
+        ...mapActions(['toggleImageLike'])
+    }
 };
 </script>
 
@@ -35,14 +35,15 @@ export default {
             </div>
             <div class="links">
                 <div class="like" @click="toggleImageLike(this.$route.query.source)">
-                    <img :src="isImageLiked(this.$route.query.source) ? 'src/assets/heart.png' : 'src/assets/love.png'" alt="">
+                    <img :src="isImageLiked(this.$route.query.source) ? 'src/assets/heart.png' : 'src/assets/love.png'"
+                        alt="">
                 </div>
                 <div class="download">
                     <div class="download__icon">
                         <img src="../assets/download.svg" alt="">
                     </div>
-                    <div>
-                        Downloand
+                    <div class="txt">
+                        Download
                     </div>
                 </div>
             </div>
@@ -155,5 +156,55 @@ export default {
 
 .main img {
     width: 1482px;
+}
+
+@media (max-width: 1550px) {
+    .main {
+        text-align: center;
+        width: 100%;
+    }
+
+    .main img {
+        width: 80%;
+    }
+}
+
+@media (max-width: 625px) {
+    .image {
+        background-image: none !important;
+    }
+
+    .blacknwhite {
+        display: none;
+    }
+
+    .name {
+        color: #000000;
+        font-size: 18px;
+    }
+
+    .username {
+        color: #BDBDBD;
+        font-size: 14px;
+    }
+
+    .txt {
+        display: none;
+    }
+
+    .download {
+        justify-content: center;
+        height: 41px;
+        width: 41px;
+    }
+
+    .download__icon {
+        margin: 0;
+    }
+
+    .user__nav {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 </style>

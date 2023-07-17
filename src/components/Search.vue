@@ -108,4 +108,14 @@ button {
     margin-top: 30px;
     text-align: center;
 }
+
+@media (max-width: 900px) {
+    input {
+        width: 100%;
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+}
 </style>

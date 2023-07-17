@@ -6,14 +6,17 @@ import HeaderAlternative from '../components/HeaderAlternative.vue'
 import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
-  computed: {
-    ...mapGetters(['allImageLinks'])
-  }
+    computed: {
+        ...mapGetters(['allImageLinks'])
+    }
 };
 </script>
 
 <template>
     <HeaderAlternative />
+    <div class="favorite">
+        Избранное
+    </div>
     <div class="result">
         <div v-for="link in allImageLinks">
             <img :src="link" alt="">
@@ -22,6 +25,14 @@ export default {
 </template>
 
 <style scoped>
+.favorite {
+    font-size: 72px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 94px;
+    margin-bottom: 101px;
+}
+
 .result {
     column-gap: 30px;
     display: grid;
@@ -35,5 +46,23 @@ export default {
 .result img {
     height: 440px;
     width: 473px;
+}
+
+@media (max-width: 1488px) {
+    .result {
+        grid-template-columns: 1fr;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 508px) {
+    .favorite {
+        font-size: 36px;
+    }
+    .result img {
+        height: 331px;
+        width: 334px;
+    }
 }
 </style>
