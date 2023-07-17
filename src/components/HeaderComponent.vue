@@ -5,15 +5,17 @@
 <template>
     <header class="header">
         <div class="container">
-            <div>
+            <router-link :to="{ name: 'home' }">
                 <img src="../assets/logo.svg" alt="">
-            </div>
+            </router-link>
             <div class="favorite">
                 <div class="like">
                     <img src="../assets/like.svg" alt="">
                 </div>
                 <div class="txt">
-                    Избранное
+                    <router-link :to="{ name: 'favorite' }">
+                        Избранное
+                    </router-link>
                 </div>
             </div>
         </div>
