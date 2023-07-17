@@ -1,5 +1,21 @@
 <script setup>
 import HeaderAlternative from '../components/HeaderAlternative.vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+import unlike from '../assets/love.png'
+import like from '../assets/heart.png'
+import { mapActions, mapGetters } from 'vuex'
+
+const route = useRoute()
+
+const id = computed(() => route.query.id)
+const source = computed(() => route.query.source)
+const username = computed(() => route.query.username)
+const name = computed(() => route.query.name)
+const photo = computed(() => route.query.photo)
+
+// Вычисляемые свойства на основе пропсов маршрута
+
 </script>
 
 <script>
@@ -8,35 +24,34 @@ import { mapState, mapActions, mapGetters } from 'vuex';
 export default {
     computed: {
         ...mapState(['photos']),
-        ...mapGetters(['isImageLiked', 'allImageLinks'])
+        ...mapGetters(['isImageLiked', 'allImageLinks']),
     },
     methods: {
-        ...mapActions(['toggleImageLike'])
+        ...mapActions(['toggleImageLike']),
     }
 };
 </script>
 
 <template>
     <HeaderAlternative />
-    <div class="image" :style="{ backgroundImage: 'url(' + this.$route.query.source + ')' }">
+    <div class="image" :style="{ backgroundImage: 'url(' + source + ')' }">
         <div class="user__nav">
             <div class="user">
                 <div class="icon">
-                    <img :src="this.$route.query.photo" alt="">
+                    <img :src="photo" alt="">
                 </div>
                 <div class="info">
                     <div class="name">
-                        {{ this.$route.query.name }}
+                        {{ name }}
                     </div>
                     <div class="username">
-                        @{{ this.$route.query.username }}
+                        @{{ username }}
                     </div>
                 </div>
             </div>
             <div class="links">
-                <div class="like" @click="toggleImageLike(this.$route.query.source)">
-                    <img :src="isImageLiked(this.$route.query.source) ? 'src/assets/heart.png' : 'src/assets/love.png'"
-                        alt="">
+                <div class="like" @click="toggleImageLike(source)">
+                    <img :src="isImageLiked(source) ? like : unlike" alt="">
                 </div>
                 <div class="download">
                     <div class="download__icon">
@@ -54,7 +69,7 @@ export default {
         </div>
 
         <div class="main">
-            <img :src="this.$route.query.source" alt="">
+            <img :src="source" alt="">
         </div>
     </div>
 </template>

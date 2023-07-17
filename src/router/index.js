@@ -15,7 +15,13 @@ const router = createRouter({
       path: '/:id',
       name: 'image',
       component: ResultItem,
-      props: true,
+      props: (route) => ({
+        id: route.query.id,
+        source: route.query.source,
+        username: route.query.username,
+        name: route.query.name,
+        photo: route.query.photo
+      })
     },
     {
       path: '/favorite',
