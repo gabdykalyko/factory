@@ -3,14 +3,22 @@ import HeaderAlternative from '../components/HeaderAlternative.vue'
 </script>
 
 <script>
+import { mapState, mapActions, mapGetters } from 'vuex';
+
 export default {
-    props: ['id']
-}
+  computed: {
+    ...mapState(['photos']),
+    ...mapGetters(['isImageLiked', 'allImageLinks'])
+  },
+  methods: {
+    ...mapActions(['toggleImageLike'])
+  }
+};
 </script>
 
 <template>
     <HeaderAlternative />
-    <div class="image" :style="{backgroundImage:'url(' + this.$route.query.source + ')'}">
+    <div class="image" :style="{ backgroundImage: 'url(' + this.$route.query.source + ')' }">
         <div class="user__nav">
             <div class="user">
                 <div class="icon">
@@ -26,8 +34,8 @@ export default {
                 </div>
             </div>
             <div class="links">
-                <div class="like">
-                    <img src="../assets/likeblack.svg" alt="">
+                <div class="like" @click="toggleImageLike(this.$route.query.source)">
+                    <img :src="isImageLiked(this.$route.query.source) ? 'src/assets/heart.png' : 'src/assets/love.png'" alt="">
                 </div>
                 <div class="download">
                     <div class="download__icon">
@@ -43,7 +51,7 @@ export default {
         <div class="blacknwhite">
 
         </div>
-        
+
         <div class="main">
             <img :src="this.$route.query.source" alt="">
         </div>
@@ -73,9 +81,9 @@ export default {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin:  auto;
+    margin: auto;
     max-width: 1480px;
-    position:relative;
+    position: relative;
     z-index: 2;
 }
 
@@ -117,6 +125,10 @@ export default {
     width: 49px;
 }
 
+.like img {
+    width: 24px;
+}
+
 .download {
     align-items: center;
     background-color: #FFF200;
@@ -141,7 +153,7 @@ export default {
     z-index: 2;
 }
 
-.main img{
+.main img {
     width: 1482px;
 }
 </style>

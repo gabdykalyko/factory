@@ -4,7 +4,7 @@
 <template>
     <header class="header">
         <div class="container">
-            <router-link :to="{name: 'home'}">
+            <router-link :to="{ name: 'home' }">
                 <img src="../assets/logosmall.svg" alt="">
             </router-link>
             <div class="nav">
@@ -13,7 +13,9 @@
                         <img src="../assets/searchwhite.svg" alt="">
                     </div>
                     <div class="txt">
-                        Поиск
+                        <router-link :to="{ name: 'home' }">
+                            Поиск
+                        </router-link>
                     </div>
                 </div>
                 <div class="nav__item">
@@ -21,7 +23,9 @@
                         <img src="../assets/like.svg" alt="">
                     </div>
                     <div class="txt">
-                        Избранное
+                        <router-link :to="{ name: 'favorite' }">
+                            Избранное
+                        </router-link>
                     </div>
                 </div>
             </div>

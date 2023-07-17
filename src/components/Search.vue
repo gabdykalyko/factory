@@ -9,7 +9,9 @@ export default {
     data() {
         return {
             result: null,
-            searchValue: ''
+            searchValue: '',
+            loading: false,
+            error: null
         }
     },
     mounted() {
@@ -23,15 +25,21 @@ export default {
         })
     },
     methods: {
-        search: function() {
+        search: function () {
+            this.loading = true;
             axios.get('https://api.unsplash.com/photos/random', {
-            params: { count: '8', query: this.searchValue },
-            headers: {
-                Authorization: 'Client-ID hW9Ksvol1DwVc_WWsWrRfywa52fF_QtKHRsVdHmYyMA'
-            }
-        }).then((response) => {
-            this.result = response.data
-        })
+                params: { count: '8', query: this.searchValue },
+                headers: {
+                    Authorization: 'Client-ID hW9Ksvol1DwVc_WWsWrRfywa52fF_QtKHRsVdHmYyMA'
+                }
+            }).then((response) => {
+                this.result = response.data
+            }).catch((error) => {
+                this.error = 'Failed to search photos';
+                console.error(error);
+            }).finally(() => {
+                this.loading = false;
+            })
         }
     }
 }
@@ -53,7 +61,13 @@ export default {
         </div>
     </div>
 
-    <Result :results="result"/>
+    <div v-if="loading" class="loader">
+        <img src="../assets/loader.svg" alt="">
+    </div>
+
+    <Result :results="result" v-if="!loading && result" />
+
+    <div v-if="error" class="error">{{ error }}</div>
 </template>
 
 <style scoped>
@@ -88,5 +102,10 @@ button {
     border: none;
     cursor: pointer;
     outline: none;
+}
+
+.loader {
+    margin-top: 30px;
+    text-align: center;
 }
 </style>
