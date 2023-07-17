@@ -35,7 +35,7 @@ export default {
             </div>
             <div class="links">
                 <div class="like" @click="toggleImageLike(this.$route.query.source)">
-                    <img src="../assets/likeblack.svg" alt="">
+                    <img :src="isImageLiked(this.$route.query.source) ? 'src/assets/heart.png' : 'src/assets/love.png'" alt="">
                 </div>
                 <div class="download">
                     <div class="download__icon">
