@@ -8,16 +8,16 @@
             <router-link :to="{ name: 'home' }">
                 <img src="../assets/logo.svg" alt="">
             </router-link>
-            <div class="favorite">
-                <div class="like">
-                    <img src="../assets/like.svg" alt="">
-                </div>
-                <div class="txt">
-                    <router-link :to="{ name: 'favorite' }">
+            <router-link :to="{ name: 'favorite' }">
+                <div class="favorite">
+                    <div class="like">
+                        <img src="../assets/like.svg" alt="">
+                    </div>
+                    <div class="txt">
                         Избранное
-                    </router-link>
+                    </div>
                 </div>
-            </div>
+            </router-link>
         </div>
     </header>
 </template>
@@ -48,5 +48,11 @@
 .txt {
     color: #ffffff;
     font-size: 18px;
+}
+
+@media (max-width: 508px) {
+    .txt {
+        display: none;
+    }
 }
 </style>
